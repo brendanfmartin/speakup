@@ -16,14 +16,10 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/pure.css">
   <link rel="stylesheet" href="css/main.css">
 
   <meta name="theme-color" content="#fafafa">
-  <style type="text/css">
-    #select {
-    }
-  </style>
 </head>
 
 <body>
@@ -35,13 +31,44 @@
     </div>
   </div>
 
+  <h1>Philly Cares</h1>
+
   <div class="topic list">
-    <h4>what matters to you?</h4>
+    <h4>What matters to you?</h4>
     <p>select one</p>
-    <ul>
-      <li></li>
-    </ul>
+    <div>
+      <input type="radio" id="police_oversight" name="matter" value="police_oversight">
+      <label for="police_oversight">Police Oversight</label>
+    </div>
+    <div>
+      <input type="radio" id="incarceration" name="matter" value="incarceration">
+      <label for="incarceration">Incarceration Rate</label>
+    </div>
+    <div>
+      <input type="radio" id="rent_control" name="matter" value="rent_control">
+      <label for="rent_control">Rent Control</label>
+    </div>
   </div>
+
+  <div class="official list">
+    <h4>Who will you message?</h4>
+    <p>select one</p>
+    <div>
+      <input type="radio" id="jim_kenney" name="official" value="jim_kenney">
+      <label for="jim_kenney">Mayor Jim Kenney</label>
+    </div>
+    <div>
+      <input type="radio" id="pat_toomey" name="official" value="pat_toomey">
+      <label for="pat_toomey">U.S. Senator Pat Toomey</label>
+    </div>
+    <div>
+      <input type="radio" id="thomas_murt" name="official" value="thomas_murt">
+      <label for="thomas_murt">PA House of Rep Thomas P. Murt</label>
+    </div>
+  </div>
+
+  <button type="submit" class="pure-button pure-button-primary" onclick="speak_up_lib.craft_email()">Craft Email</button>
+  <a id="craft_mail_hidden_link" hidden></a>
 
   <script src="js/main.js"></script>
 

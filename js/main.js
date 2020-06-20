@@ -1,132 +1,47 @@
 const speak_up_lib = {
-  getReps: () => {
-    speak_up_lib.clearOfficials();
-    const zip = speak_up_dom.zip().value;
-    const key = 'AIzaSyB7qmZN41K4jxK8vqWNuPdurpFfIFvu8_0';
-    const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${zip}`;
-    fetch(url)
-       .then(res => {
-         if (res.status > 299) {
-           speak_up_lib.showError();
-         } else {
-           res.json().then(speak_up_lib.parseData)
-         }
-       })
-       .catch(err => {
-         console.error(err);
-         speak_up_lib.showError();
-       });
+  craft_email: () => {
+    const matter = speak_up_lib.get_radio_value('matter');
+    const official = speak_up_lib.get_radio_value('official');
+    const mailto = speak_up_maps.official[official].mailto;
+    const subject = `${speak_up_maps.official[official].subject} - ${speak_up_maps.matter[matter].subject}`;
+    const body = `${speak_up_maps.matter[matter].body} ${speak_up_maps.official[official].body}`;
+    window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
   },
 
-  clearOfficials: () => {
-    speak_up_dom.officials().innerHTML = '';
-  },
-
-  showError: () => {
-    speak_up_dom.notification().classList.remove('hidden');
-  },
-
-  closeError: () => {
-    speak_up_dom.notification().classList.add('hidden');
-  },
-
-  parseData: (data) => {
-    const localOfficeKeys = ['administrativeArea1', 'administrativeArea2', 'locality', 'regional', 'special', 'subLocality1', 'subLocality2'];
-    const localOffices = [];
-
-    /**
-     * get only the local offices
-     */
-    data.offices.forEach((office) => {
-      localOffices.push(Object.assign({}, office));
-      // if (localOfficeKeys.indexOf(office.levels[0]) > -1) {
-      //   localOffices.push(Object.assign({}, office));
-      // }
-    });
-
-    /**
-     * enrich offices with current officials
-     */
-    localOffices.forEach((office) => {
-      office.officials = [];
-      office.officialIndices.forEach(i => {
-        office.officials.push(data.officials[i]);
-      });
-    });
-
-    localOffices.forEach(office => {
-      let html = `<h2>${office.name}<h2>`;
-      office.officials.forEach(official => {
-        html += `<h3>${official.name}</h3>`;
-        console.log(official)
-        if (official.emails) {
-          official.emails.forEach(email => {
-            html += `<a href="mailto:${email}?subject=Important&body=hello">Email</a>`
-          });
-        }
-      });
-      speak_up_dom.officials().innerHTML += html;
-    });
-
-    // {
-    //   "name": "Governor of Pennsylvania",
-    //    "divisionId": "ocd-division/country:us/state:pa",
-    //    "levels": [
-    //   "administrativeArea1"
-    // ],
-    //    "roles": [
-    //   "headOfGovernment"
-    // ],
-    //    "officialIndices": [
-    //   5
-    // ],
-    //    "officials": [
-    //   {
-    //     "name": "Tom Wolf",
-    //     "address": [
-    //       {
-    //         "line1": "508 Main Capitol Building",
-    //         "city": "Harrisburg",
-    //         "state": "PA",
-    //         "zip": "17120"
-    //       }
-    //     ],
-    //     "party": "Democratic Party",
-    //     "phones": [
-    //       "(717) 787-2500"
-    //     ],
-    //     "urls": [
-    //       "https://www.governor.pa.gov/"
-    //     ],
-    //     "photoUrl": "https://www.governor.pa.gov/wp-content/uploads/2015/05/Governor_Tom_Wolf-e1437147843966.jpg",
-    //     "emails": [
-    //       "Governor@pa.gov"
-    //     ],
-    //     "channels": [
-    //       {
-    //         "type": "Facebook",
-    //         "id": "governorwolf"
-    //       },
-    //       {
-    //         "type": "Twitter",
-    //         "id": "governortomwolf"
-    //       },
-    //       {
-    //         "type": "YouTube",
-    //         "id": "UC8cXXCdLzcYoYGa_BqaPsgA"
-    //       }
-    //     ]
-    //   }
-    // ]
-    // }
-
-
-
-  }
+  get_radio_value: (elName) => Array.prototype.slice.call(document.getElementsByName(elName)).filter(r => r.checked)[0].value,
 };
 
-const speak_up_dom = {
-  notification: () => document.getElementById('notification-container'),
-  zip: () => document.getElementById('zip'),
-  officials: () => document.getElementById('officials')
+const speak_up_maps = {
+  matter: {
+    police_oversight: {
+      body: 'We need more police oversight.',
+      subject: 'Police Oversight Reform'
+    },
+    incarceration: {
+      body:  'Vacate all sentences for marijuana related charges.',
+      subject: 'Police Oversight Reform'
+    },
+    rent_control: {
+      body:  'Gentrification is causing rents to soar.',
+      subject: 'Police Oversight Reform'
+    }
+  },
+
+  official: {
+    jim_kenney: {
+      mailto: 'jim_kenney@pagov.com',
+      body: ' And fuck you Jim Kenney',
+      subject: 'Jim Kenney'
+    },
+    pat_toomey: {
+      mailto: 'pat_toomey@pagov.com',
+      body: ' And fuck you Pat Toomey',
+      subject: 'Pat Toomey'
+    },
+    thomas_murt: {
+      mailto: 'thomas_murt@pagov.com',
+      body: ' And fuck you Thomas Murt',
+      subject: 'Thomas Murt'
+    },
+  }
 };
