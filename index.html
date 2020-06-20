@@ -24,16 +24,27 @@
 
 <body>
 
-<!-- Add your site or application content here -->
-<p>Hello world! This is HTML5 Boilerplate.</p>
-<script src="js/main.js"></script>
+  <div class="notification-container hidden">
+    <div class="notification"></div>
+  </div>
 
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<script>
-  // window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-  // ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-</script>
-<script src="https://www.google-analytics.com/analytics.js" async></script>
+  <div class="main-content">
+    <label for="select">Select</label>
+    <select id="select" onchange="speak_up_lib.select(event)">
+      <option name="none" id="none" value="">-</option>
+      <option name="first" id="first" value="first">First</option>
+      <option name="second" id="second" value="second">Second</option>
+    </select>
+  </div>
+
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    // window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    // ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
