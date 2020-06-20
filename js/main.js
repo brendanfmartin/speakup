@@ -1,5 +1,6 @@
 const speak_up_lib = {
   getReps: () => {
+    speak_up_lib.clearOfficials();
     const zip = speak_up_dom.zip().value;
     const key = 'AIzaSyB7qmZN41K4jxK8vqWNuPdurpFfIFvu8_0';
     const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${zip}`;
@@ -15,6 +16,10 @@ const speak_up_lib = {
          console.error(err);
          speak_up_lib.showError();
        });
+  },
+
+  clearOfficials: () => {
+    speak_up_dom.officials().innerHTML = '';
   },
 
   showError: () => {
