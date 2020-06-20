@@ -20,21 +20,28 @@
   <link rel="stylesheet" href="css/main.css">
 
   <meta name="theme-color" content="#fafafa">
+  <style type="text/css">
+    #select {
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="notification-container hidden">
-    <div class="notification"></div>
+  <div id="notification-container" class="notification-container hidden">
+    <div class="notification">
+      <div class="close" onclick="speak_up_lib.closeError()">X</div>
+      <div class="message"></div>
+    </div>
   </div>
 
   <div class="main-content">
-    <label for="select">Select</label>
-    <select id="select" onchange="speak_up_lib.select(event)">
-      <option name="none" id="none" value="">-</option>
-      <option name="first" id="first" value="first">First</option>
-      <option name="second" id="second" value="second">Second</option>
-    </select>
+    <input type="text" id="zip">
+    <button onclick="speak_up_lib.getReps()">Find My Reps</button>
+  </div>
+
+  <div class="officials">
+
   </div>
 
   <script src="js/main.js"></script>
