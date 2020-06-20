@@ -1,8 +1,7 @@
 # todo 
 
 ## API
- - restrict api key
- - proxy through apis
+ - [restrict api key](https://console.developers.google.com/apis/credentials)
  - google analytics
 
 ## UI
