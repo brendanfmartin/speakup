@@ -8,6 +8,10 @@ const speak_up_lib = {
     window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
   },
 
+  select_matter: () => document.getElementById('official-list').hidden = false,
+
+  select_official: () => document.getElementById('craft-email').disabled = false,
+
   get_radio_value: (elName) => Array.prototype.slice.call(document.getElementsByName(elName)).filter(r => r.checked)[0].value,
 };
 
