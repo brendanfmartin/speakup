@@ -18,7 +18,7 @@ const speak_up_lib = {
 
   show_officials: (matter) => {
     const officials = [];
-    speak_up_maps.matter[matter].officials.map(o => officials.push(speak_up_maps.official[o]));
+    speak_up_maps.matter[matter].officials.forEach(o => officials.push(speak_up_maps.official[o]));
     console.log(officials)
     const radios = [];
     const radio = `
