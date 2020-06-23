@@ -8,7 +8,19 @@ const speak_up_lib = {
     window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
   },
 
-  select_matter: () => document.getElementById('official-list').hidden = false,
+  select_matter: () =>{
+    document.getElementById('official-list').hidden = false;
+    speak_up_lib.show_officials();
+  },
+
+  show_officials: () => {
+      const radio = `
+      <div>
+        <input onclick="speak_up_lib.select_official()" type="radio" id="thomas_murt" name="official" value="thomas_murt">
+        <label for="thomas_murt">PA House of Rep Thomas P. Murt</label>
+      </div>`;
+      document.getElementById('official-list-dynamic').innerHTML = radio;
+  },
 
   select_official: () => document.getElementById('craft-email').disabled = false,
 
@@ -17,6 +29,11 @@ const speak_up_lib = {
 
 const speak_up_maps = {
   matter: {
+    breonna_taylor: {
+      body: 'tbd',
+      subject: 'tbd',
+      officials: ['robert_schroeder']
+    },
     police_oversight: {
       body: 'We need more police oversight.',
       subject: 'Police Oversight Reform'
@@ -47,5 +64,11 @@ const speak_up_maps = {
       body: ' And fuck you Thomas Murt',
       subject: 'Thomas Murt'
     },
+    robert_schroeder: {
+      mailto: 'robert.schroeder@louisvilleky.gov',
+      body: 'tbd',
+      tel: '5025747111',
+      phone_text: 'Remain calm'
+    }
   }
 };
