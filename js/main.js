@@ -25,14 +25,14 @@ const speak_up_lib = {
   show_officials: (matter) => {
     const officials = [];
     speak_up_maps.matter[matter].officials.forEach(o => officials.push(speak_up_maps.official[o]));
-    console.log(officials)
+    console.log(officials);
     const radios = [];
+    let d = document.createElement('div');
     const radio = `
-      <div>
         <input onclick="speak_up_lib.select_official()" type="radio" id="${officials[0].id}" name="official" value="${officials[0].id}">
-        <label for="${officials[0].id}">${officials[0].name}</label>
-      </div>`;
-      document.getElementById('official-list-dynamic').innerHTML = radio;
+        <label for="${officials[0].id}">${officials[0].name}</label>`;
+    d.innerHTML = radio;
+    document.getElementById('official-list-dynamic').append(d);
   },
 
   select_official: () => {
