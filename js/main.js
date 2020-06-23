@@ -2,12 +2,18 @@ const speak_up_lib = {
   craft_email: () => {
     const matter = speak_up_lib.get_radio_value('matter');
     const official = speak_up_lib.get_radio_value('official');
-    console.log(matter)
-    console.log(speak_up_maps.official[official]);
     const mailto = speak_up_maps.official[official].mailto;
     const subject = `${speak_up_maps.matter[matter].subject}`;
     const body = `${speak_up_maps.matter[matter].body} ${speak_up_maps.official[official].body}`;
     window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
+  },
+
+  craft_tel: () => {
+    const matter = speak_up_lib.get_radio_value('matter');
+    const official = speak_up_lib.get_radio_value('official');
+    const tel = speak_up_maps.official[official].tel;
+    // build a page for info
+    window.location.href = `tel:${tel}}`;
   },
 
   select_matter: () =>{
@@ -29,7 +35,10 @@ const speak_up_lib = {
       document.getElementById('official-list-dynamic').innerHTML = radio;
   },
 
-  select_official: () => document.getElementById('craft-email').disabled = false,
+  select_official: () => {
+    document.getElementById('craft-tel').disabled = false;
+    document.getElementById('craft-email').disabled = false;
+  },
 
   get_radio_value: (elName) => Array.prototype.slice.call(document.getElementsByName(elName)).filter(r => r.checked)[0].value,
 };
