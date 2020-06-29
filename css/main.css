@@ -1,3 +1,4 @@
+/** notifications **/
 .notification-container {
   position: fixed;
   z-index: 9999;
@@ -13,6 +14,12 @@
   border-top: 0;
 }
 
+/** main **/
+.main-content {
+  padding: 20px;
+}
+
+/** action buttons **/
 .action-button-container {
   position: fixed;
   z-index: 9999;
@@ -24,4 +31,5 @@
 
 .craft-button {
   width: 75%;
+  margin: 5px;
 }
