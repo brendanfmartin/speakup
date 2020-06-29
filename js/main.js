@@ -16,17 +16,16 @@ const speak_up_lib = {
     window.location.href = `tel:${tel}}`;
   },
 
-  select_matter: () =>{
+  select_matter: () => {
     const matter = speak_up_lib.get_radio_value('matter');
     document.getElementById('official-list').hidden = false;
+    speak_up_lib.clear_officials(matter);
     speak_up_lib.show_officials(matter);
   },
 
   show_officials: (matter) => {
     const officials = [];
     speak_up_maps.matter[matter].officials.forEach(o => officials.push(speak_up_maps.official[o]));
-    console.log(officials);
-    const radios = [];
     let d = document.createElement('div');
     const radio = `
         <input onclick="speak_up_lib.select_official()" type="radio" id="${officials[0].id}" name="official" value="${officials[0].id}">
@@ -34,6 +33,8 @@ const speak_up_lib = {
     d.innerHTML = radio;
     document.getElementById('official-list-dynamic').append(d);
   },
+
+  clear_officials: () => document.getElementById('official-list-dynamic').innerHTML = '',
 
   select_official: () => {
     document.getElementById('craft-tel').disabled = false;
