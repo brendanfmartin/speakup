@@ -32,7 +32,6 @@ const speak_up_lib = {
 
   show_topics: () => {
     for (const topic in speak_up_maps.matter) {
-      console.log(speak_up_maps.matter[topic]);
       const radio = `
          <input onclick="speak_up_lib.select_matter()" type="radio" id="${topic}" name="matter" value="${topic}">
          <label for="${topic}">${speak_up_maps.matter[topic].label}</label>`;
@@ -44,13 +43,15 @@ const speak_up_lib = {
 
   show_officials: (matter) => {
     const officials = [];
-    speak_up_maps.matter[matter].officials.forEach(o => officials.push(speak_up_maps.official[o]));
-    const radio = `
-        <input onclick="speak_up_lib.select_official()" type="radio" id="${officials[0].id}" name="official" value="${officials[0].id}">
-        <label for="${officials[0].id}">${officials[0].name}</label>`;
-    let d = document.createElement('div');
-    d.innerHTML = radio;
-    document.getElementById('official-list-dynamic').append(d);
+    speak_up_maps.matter[matter].officials.forEach(o => {
+      const of = speak_up_maps.official[o];
+      const radio = `
+        <input onclick="speak_up_lib.select_official()" type="radio" id="${of.id}" name="official" value="${of.id}">
+        <label for="${of.id}">${of.name}</label>`;
+      let d = document.createElement('div');
+      d.innerHTML = radio;
+      document.getElementById('official-list-dynamic').append(d);
+    });
   },
 
   clear_officials: () => document.getElementById('official-list-dynamic').innerHTML = '',
