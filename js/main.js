@@ -9,7 +9,6 @@ const speak_up_lib = {
   },
 
   craft_tel: () => {
-    const matter = speak_up_lib.get_radio_value('matter');
     const official = speak_up_lib.get_radio_value('official');
     const tel = speak_up_maps.official[official].tel;
     // build a page for info
@@ -18,7 +17,6 @@ const speak_up_lib = {
 
   go_to_petition: () => {
     const matter = speak_up_lib.get_radio_value('matter');
-    const official = speak_up_lib.get_radio_value('official');
     const petition = speak_up_maps.matter[matter].petition;
     window.open(petition)
   },
@@ -34,7 +32,7 @@ const speak_up_lib = {
     for (const topic in speak_up_maps.matter) {
       const radio = `
          <input onclick="speak_up_lib.select_matter()" type="radio" id="${topic}" name="matter" value="${topic}">
-         <label for="${topic}">${speak_up_maps.matter[topic].label}</label>`;
+         <label for="${topic}"><span><span></span></span>${speak_up_maps.matter[topic].label}</label>`;
       let d = document.createElement('div');
       d.innerHTML = radio;
       document.getElementById('topic-list-dynamic').append(d);
@@ -42,12 +40,11 @@ const speak_up_lib = {
   },
 
   show_officials: (matter) => {
-    const officials = [];
     speak_up_maps.matter[matter].officials.forEach(o => {
       const of = speak_up_maps.official[o];
       const radio = `
         <input onclick="speak_up_lib.select_official()" type="radio" id="${of.id}" name="official" value="${of.id}">
-        <label for="${of.id}">${of.name}</label>`;
+        <label for="${of.id}"><span><span></span></span>${of.name}</label>`;
       let d = document.createElement('div');
       d.innerHTML = radio;
       document.getElementById('official-list-dynamic').append(d);
