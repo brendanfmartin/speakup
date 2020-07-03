@@ -32,7 +32,8 @@ const speak_up_lib = {
     for (const topic in speak_up_maps.matter) {
       const radio = `
          <input onclick="speak_up_lib.select_matter()" type="radio" id="${topic}" name="matter" value="${topic}">
-         <label for="${topic}"><span><span></span></span>${speak_up_maps.matter[topic].label}</label>`;
+         <label for="${topic}"><span><span></span></span>${speak_up_maps.matter[topic].label}</label>
+         <p class="topic-info">${speak_up_maps.matter[topic].info}</p>`;
       let d = document.createElement('div');
       d.innerHTML = radio;
       document.getElementById('topic-list-dynamic').append(d);
@@ -74,7 +75,7 @@ const speak_up_maps = {
   matter: {
     capt_fisher: {
       label: 'Fire Captain Fisher',
-      info: '',
+      info: 'On Monday, June 1 2020, a vigilante group consisting of 60-100 people armed with bats, clubs, pipes, and hatchets marched freely on Girard Ave.<br/>PPD\'s 26th Precinct, including Capt. William Fisher knew about the vigilante mob, encouraged, enabled, and protected them',
       petition: 'https://www.change.org/p/mayor-jim-kenney-remove-capt-william-fisher-from-philadelphia-police-department-26th-precinct',
       officials: ['jim_kenney']
     }
