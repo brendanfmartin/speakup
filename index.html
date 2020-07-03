@@ -33,13 +33,25 @@
     </div>
   </div>
 
-<!--  <div id="modal"></div>-->
+  <div id="modal" hidden>
+    <div class="modal-content">
+      <div class="modal-text">
+        <div id="modal-title"><h3>Remember</h3></div>
+        <hr>
+        <div class="modal-points">
+          <p>something goes here</p>
+          <p>something goes here</p>
+        </div>
+      </div>
+      <div class="modal-button-container">
+        <button class="pure-button pure-button-primary action-button" onclick="speak_up_lib.craft_tel()" disabled>Call</button>
+      </div>
+    </div>
+  </div>
 
   <div class="main-content">
     <h1>Philly Speaks Up</h1>
-
     <hr>
-
     <h4>Enacting change is not passive.</h4>
     <h4>Find a cause that matters to you. Find the appropriate people to contact. Send an email, phone number, or petition.</h4>
     <h4>Speak up.</h4>
@@ -47,9 +59,7 @@
     <hr>
 
     <div id="topic-list" class="topic list">
-
       <h5>What matters to you?</h5>
-
       <div id="topic-list-dynamic"></div>
     </div>
 
@@ -60,9 +70,9 @@
   </div>
 
   <div class="action-button-container">
-    <button type="submit" id="craft-tel" class="pure-button pure-button-primary craft-button" onclick="speak_up_lib.craft_tel()" disabled>Call</button>
-    <button type="submit" id="craft-email" class="pure-button pure-button-primary craft-button" onclick="speak_up_lib.craft_email()" disabled>Email</button>
-    <button type="submit" id="craft-petition" class="pure-button pure-button-primary craft-button" onclick="speak_up_lib.go_to_petition()" disabled>Petition</button>
+    <button id="craft-tel" class="pure-button pure-button-primary action-button" onclick="speak_up_lib.craft_tel()" disabled>Call</button>
+    <button id="craft-email" class="pure-button pure-button-primary action-button" onclick="speak_up_lib.craft_email()" disabled>Email</button>
+    <button id="craft-petition" class="pure-button pure-button-primary action-button" onclick="speak_up_lib.go_to_petition()" disabled>Petition</button>
   </div>
 
   <script src="js/main.js"></script>
