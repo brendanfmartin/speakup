@@ -13,29 +13,44 @@ const speak_up_lib = {
     document.getElementById('modal-action').disabled = false;
     document.getElementById('modal-action').onclick = () => {
       const mailto = speak_up_maps.official[official].mailto;
-      const subject = `${speak_up_maps.matter[matter].subject}`;
-      const body = `${speak_up_maps.matter[matter].body} ${speak_up_maps.official[official].body}`;
+      const subject = '[ADD YOUR SUBJECT]';
+      const body = `${speak_up_maps.official[official].name}\n\n${speak_up_maps.matter[matter].email_body}`;
       window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
     };
 
     // set info
-    document.getElementById('modal-points').innerHTML = '';
+    document.getElementById('modal-points').innerHTML = '<p>Customize your email subject, body, and signature.</p>';
 
     // show modal
     speak_up_lib.show_modal();
   },
 
   craft_tel: () => {
+    console.log('test')
+    // get the matter and official
+    const matter = speak_up_lib.get_radio_value('matter');
     const official = speak_up_lib.get_radio_value('official');
-    const tel = speak_up_maps.official[official].tel;
-    // build a page for info
-    window.location.href = `tel:${tel}}`;
+
+    // show button
+    document.getElementById('modal-action').innerText = 'Call';
+    document.getElementById('modal-action').disabled = false;
+    document.getElementById('modal-action').onclick = () => {
+      const tel = speak_up_maps.official[official].tel;
+      window.location.href = `tel:${tel}}`;
+    };
+
+    // set info
+    document.getElementById('modal-points').innerHTML = '<p>Put the phone on speaker.</p><p>Refer to these points</p>';
+    document.getElementById('modal-points').innerHTML += speak_up_maps.matter[matter].info;
+
+    // show modal
+    speak_up_lib.show_modal();
   },
 
   go_to_petition: () => {
     const matter = speak_up_lib.get_radio_value('matter');
     const petition = speak_up_maps.matter[matter].petition;
-    window.open(petition)
+    window.open(petition);
   },
 
   select_matter: () => {
@@ -92,8 +107,9 @@ const speak_up_maps = {
   matter: {
     capt_fisher: {
       label: 'Fire Captain Fisher',
-      info: 'On Monday, June 1 2020, a vigilante group consisting of 60-100 people armed with bats, clubs, pipes, and hatchets marched freely on Girard Ave.<br/>PPD\'s 26th Precinct, including Capt. William Fisher knew about the vigilante mob, encouraged, enabled, and protected them',
+      info: 'On Monday, June 1 2020, a vigilante group consisting of 60-100 people armed with bats, clubs, pipes, and hatchets marched freely on Girard Ave.<br/><br/>PPD\'s 26th Precinct, including Capt. William Fisher knew about the vigilante mob, encouraged, enabled, and protected them.',
       petition: 'https://www.change.org/p/mayor-jim-kenney-remove-capt-william-fisher-from-philadelphia-police-department-26th-precinct',
+      email_body: `On Monday, June 1 2020, a vigilante group consisting of 60-100 people armed with bats, clubs, pipes, and hatchets marched freely on Girard Ave. PPD's 26th Precinct, including Capt. William Fisher knew about the vigilante mob, encouraged, enabled, and protected them.\n\n[ADD YOUR TEXT HERE]\n\n[SIGN HERE]`,
       officials: ['jim_kenney']
     }
   },
