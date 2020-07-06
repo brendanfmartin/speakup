@@ -26,25 +26,16 @@
 
 <body>
 
-  <div id="notification-container" class="notification-container hidden">
-    <div class="notification">
-      <div class="close" onclick="speak_up_lib.closeError()">X</div>
-      <div class="message"></div>
-    </div>
-  </div>
-
   <div id="modal" hidden>
     <div class="modal-content">
+      <div class="modal-close" onclick="speak_up_lib.close_modal()">X</div>
       <div class="modal-text">
         <div id="modal-title"><h3>Remember</h3></div>
         <hr>
-        <div class="modal-points">
-          <p>something goes here</p>
-          <p>something goes here</p>
-        </div>
+        <div id="modal-points"></div>
       </div>
       <div class="modal-button-container">
-        <button class="pure-button pure-button-primary action-button" onclick="speak_up_lib.craft_tel()" disabled>Call</button>
+        <button id="modal-action" class="pure-button pure-button-primary action-button" disabled></button>
       </div>
     </div>
   </div>

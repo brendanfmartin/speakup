@@ -1,11 +1,28 @@
 const speak_up_lib = {
+  show_modal: () => document.getElementById('modal').hidden = false,
+
+  close_modal: () => document.getElementById('modal').hidden = true,
+
   craft_email: () => {
+    // get the matter and official
     const matter = speak_up_lib.get_radio_value('matter');
     const official = speak_up_lib.get_radio_value('official');
-    const mailto = speak_up_maps.official[official].mailto;
-    const subject = `${speak_up_maps.matter[matter].subject}`;
-    const body = `${speak_up_maps.matter[matter].body} ${speak_up_maps.official[official].body}`;
-    window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
+
+    // show button
+    document.getElementById('modal-action').innerText = 'Email';
+    document.getElementById('modal-action').disabled = false;
+    document.getElementById('modal-action').onclick = () => {
+      const mailto = speak_up_maps.official[official].mailto;
+      const subject = `${speak_up_maps.matter[matter].subject}`;
+      const body = `${speak_up_maps.matter[matter].body} ${speak_up_maps.official[official].body}`;
+      window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}&subject=${encodeURIComponent(subject)}`;
+    };
+
+    // set info
+    document.getElementById('modal-points').innerHTML = '';
+
+    // show modal
+    speak_up_lib.show_modal();
   },
 
   craft_tel: () => {
@@ -24,6 +41,7 @@ const speak_up_lib = {
   select_matter: () => {
     const matter = speak_up_lib.get_radio_value('matter');
     document.getElementById('official-list').hidden = false;
+    document.getElementById('craft-petition').disabled = false;
     speak_up_lib.clear_officials(matter);
     speak_up_lib.show_officials(matter);
   },
@@ -57,7 +75,6 @@ const speak_up_lib = {
   select_official: () => {
     document.getElementById('craft-tel').disabled = false;
     document.getElementById('craft-email').disabled = false;
-    document.getElementById('craft-petition').disabled = false;
   },
 
   get_radio_value: (elName) => Array.prototype.slice.call(document.getElementsByName(elName)).filter(r => r.checked)[0].value,
