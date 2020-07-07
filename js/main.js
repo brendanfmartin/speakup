@@ -40,7 +40,7 @@ const speak_up_lib = {
     };
 
     // set info
-    document.getElementById('modal-points').innerHTML = '<p>Put the phone on speaker.</p><p>Refer to these points</p>';
+    document.getElementById('modal-points').innerHTML = '<p>Put the phone on speaker.</p><p>Refer to these points.</p>';
     document.getElementById('modal-points').innerHTML += speak_up_maps.matter[matter].info;
 
     // show modal
